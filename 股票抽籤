@@ -1,0 +1,30 @@
+function Lottery() {
+  var token = "輸入自己的權杖";
+  // 取得目前試算表中的名稱為 "資產成長""再平衡" 物件
+  var sheet1 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("抽籤");
+  var stock=[];
+  for(i=2;i<10;i++){
+    stock[0]=sheet1.getRange(i,2).getValue();     //股號名稱
+    stock[1]=sheet1.getRange(i,4).getValue();     //申購日
+    stock[2]=sheet1.getRange(i,10).getValue();     //報酬率
+    stock[3]=sheet1.getRange(i,13).getValue();     //中籤率
+    stock[4]=sheet1.getRange(i,14).getValue();     //備註
+    if(stock[2] > 20 && stock[3]>7 && stock[4]=='申購中'){ 
+      var message ="\n"+stock[0]+"\n申購日"+stock[1]+"\n"+"報酬率"+stock[2]+"% 中籤率"+stock[3]+"%";
+        sendline(message,token);      
+    }  
+  }
+}
+function sendline(message,token,chart) {
+    UrlFetchApp.fetch('https://notify-api.line.me/api/notify', {
+        'headers': {
+            'Authorization': 'Bearer ' + token,
+        },
+        'method': 'post',
+        'payload': {
+            'message':message,
+            'imageThumbnail':chart,
+            'imageFullsize':chart,
+        }
+    });
+}
