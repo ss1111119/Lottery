@@ -1,6 +1,5 @@
 function Lottery() {
   var token = "輸入自己的權杖";
-  // 取得目前試算表中的名稱為 "資產成長""再平衡" 物件
   var sheet1 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("抽籤");
   var stock=[];
   for(i=2;i<10;i++){
