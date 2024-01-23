@@ -14,8 +14,8 @@ function Lottery() {
   var stock = [];
   
   // 從特定儲存格中獲取報酬率門檻值和中籤率門檻值
-  var returnRateThreshold = sheet1.getRange("A1").getValue();
-  var ballotRateThreshold = sheet1.getRange("B1").getValue();
+  var returnRateThreshold = sheet1.getRange("B1").getValue();
+  var ballotRateThreshold = sheet1.getRange("D1").getValue();
   
   // 迴圈遍歷試算表的特定範圍
   for (i = 2; i < 10; i++) {
